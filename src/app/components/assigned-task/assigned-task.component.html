@@ -1,0 +1,49 @@
+<h4>Assigned <h6 (click)="toggleShowAssignedList()"><a href="#">Show/Hide</a></h6></h4>
+<div *ngIf="showAssignedList">
+<div *ngFor="let assignedTask of assignedTasks.tasks" >
+  <div *ngIf="!checkStatus(assignedTask.status)">
+    <div *ngIf="checkID(assignedTask.sharedWith)" class="task" [ngClass]="{reminder: true}" >
+      <h6>
+        <span (click)="toggleShowAssigned(assignedTask._id)">{{assignedTask.title}}</span>
+
+        <h6>
+          <fa-icon (click)="onDelete(assignedTask._id)" [ngStyle]="{'color': 'red'}" [icon]="faTimes"></fa-icon>
+        </h6>
+      </h6>
+
+      <h6>{{assignedTask.description}}</h6>
+
+      <div *ngIf="!showAssigned; else showElseAssigned">
+        <div *ngIf="checkDeadline(assignedTask.endDate); else showAssignedReminder">
+          <h6>This task is overdue!</h6>
+          <h6>The deadline was on the: {{assignedTask.endDate.substring(0,10)}}</h6>
+        </div>
+        <ng-template #showAssignedReminder>
+          <div *ngIf="checkReminder(assignedTask.reminder)">
+            <h6>REMINDER!</h6>
+            <h6>Your task is due on the {{assignedTask.endDate.substring(0,10)}}</h6>
+          </div>
+        </ng-template>
+      </div>
+
+
+
+  <ng-template #showElseAssigned>
+    <div *ngIf="assignedTaskId == assignedTask._id">
+      <h6>Priority:</h6>
+      <p>{{assignedTask.priority}}</p>
+      <h6>Start Date:</h6>
+      <p>{{assignedTask.startDate.substring(0,10)}}</p>
+      <h6>End Date:</h6>
+      <p>{{assignedTask.endDate.substring(0,10)}}</p>
+      <br>
+      <button class="btn" (click)="setToComplete(assignedTask._id)">Completed</button>
+      <br>
+      <br>
+    </div>
+  </ng-template>
+
+</div>
+</div>
+</div>
+</div>

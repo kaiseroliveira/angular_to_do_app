@@ -1,0 +1,21 @@
+
+<!-- Simple nav untill proper one is implemented,
+  used to move from app main page to messages -->
+  <h2 id="theMilk">{{title}}</h2>
+  <nav>
+    <span (click)="toggleShowMainTask()" ><a routerLink="/">Tasks</a></span>
+    <span (click)="toggleShowMain()" ><a routerLink="/messages">Messages</a></span>
+  </nav>
+
+  <div *ngIf="showMain; else showMainElse">
+  <router-outlet></router-outlet>
+  </div>
+
+  <ng-template #showMainElse>
+    <div class="container">
+      <app-header></app-header>
+      <app-task></app-task>
+    </div>
+  </ng-template>
+
+

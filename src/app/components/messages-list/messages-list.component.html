@@ -1,0 +1,14 @@
+<!-- pulling new message component,
+  setting onNewMessage event, triggered by onSubmit from new messages,
+  $event will hold the new message passed by event emmiter-->
+<app-new-message (onNewMessage)="newMessage($event)"></app-new-message>
+
+<!-- pulling message item component,
+loop through messages and display message items,
+setting onDeleteMessage and onShowMessage events
+-->
+<app-message-item
+                  *ngFor="let message of messages" [message]="message"
+                  (onDeleteMessage)="deleteMessage(message)"
+                  (onShowMessage)="showMessage(message)">
+</app-message-item>

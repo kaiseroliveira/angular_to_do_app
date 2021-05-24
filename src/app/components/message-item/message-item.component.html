@@ -1,0 +1,18 @@
+<!-- setting click event onShow and passing message in it,
+  setting ngClass for showing if message is new-->
+<div [ngClass]="{new: message.new}" class="message" (click)="onShow(message)">
+  <!-- display message title and date,
+    setting onDelete event and adding icon for delete option-->
+  <h5>{{message.title}} <fa-icon (click)="onDelete(message)" [ngStyle]="{'color': 'red'}" [icon]="faTimes"></fa-icon></h5>
+  <h6>Date: {{message.date.substring(0,10)}}</h6>
+
+  <!-- display message details based on if showMessageDetail is true or false,
+    toggled by user clicking on message item-->
+  <div *ngIf="showMessageDetail">
+    <h5>From:</h5>
+    <h6>ID: {{message.from}}, {{message.fname}} {{message.lname}} </h6>
+    <h5>Contact:</h5>
+    <h6>{{message.email}}, {{message.phone}} </h6>
+    <p>{{message.content}}</p>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<br>
+<h4>Completed <h6 (click)="toggleShowCompletedList()"><a href="#">Show/Hide</a></h6></h4>
+<div *ngIf="showCompletedList">
+
+<div *ngFor="let completedTask of completedTasks.tasks" >
+  <div *ngIf="checkStatus(completedTask.status)">
+    <div *ngIf="checkID(completedTask.ownerID, completedTask.sharedWith)" class="task" [ngClass]="{reminder: true}" >
+      <h6>
+        <span (click)="toggleShowCompleted(completedTask._id)">{{completedTask.title}}</span>
+
+        <h6>
+          <fa-icon  (click)="onDelete(completedTask._id)" [ngStyle]="{'color': 'red'}" [icon]="faTimes"></fa-icon>
+        </h6>
+      </h6>
+
+      <h6>{{completedTask.description}}</h6>
+      <div *ngIf="showCompleted">
+        <div *ngIf="completedTaskID == completedTask._id">
+          <h6>Priority:</h6>
+          <p>{{completedTask.priority}}</p>
+          <h6>Start Date:</h6>
+          <p>{{completedTask.startDate.substring(0,10)}}</p>
+          <h6>End Date:</h6>
+          <p>{{completedTask.endDate.substring(0,10)}}</p>
+          <br>
+          <h5>COMPLETED!</h5>
+          <br>
+        </div>
+      </div>
+
+      </div>
+
+</div>
+</div>
+</div>

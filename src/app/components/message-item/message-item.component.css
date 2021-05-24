@@ -1,0 +1,23 @@
+.message {
+  background: #f4f4f4;
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  word-wrap: break-word;
+}
+
+  .message.new {
+    border-left: 5px solid green;
+  }
+
+  .message h5 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .message p {
+      padding-top: 5px;
+      font-size: 25px;
+      font-weight: bold;
+  }

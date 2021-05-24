@@ -1,0 +1,6 @@
+<!--
+using ngStyle to set button back color and pulling color from message button ts file,
+also pulling text from ts file,
+click is event that triggers when button is clicked
+ -->
+<button [ngStyle]="{'background-color': color}" class="btn" (click)="onClick()">{{text}}</button>

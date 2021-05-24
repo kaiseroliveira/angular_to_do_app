@@ -1,0 +1,47 @@
+<h4>Edit Task</h4>
+  <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="taskService.selectedTask._id">
+    <input type="hidden" name="ownerID" #ownerID="ngModel" [(ngModel)]="taskService.selectedTask.ownerID">
+    <input type="hidden" name="status" #_status="ngModel" [(ngModel)]="taskService.selectedTask.status" value="false">
+      <h5>Title:</h5>
+      <input type="text" name="title" #title="ngModel" [(ngModel)]="taskService.selectedTask.title" placeholder="Title" value={{newId}} required>
+      <h5>Description:</h5>
+      <input type="text" name="description" #description="ngModel" [(ngModel)]="taskService.selectedTask.description" placeholder="description">
+      <h5>Assigned to:</h5>
+      <input type="text" name="sharedWith" #sharedWith="ngModel" [(ngModel)]="taskService.selectedTask.sharedWith" placeholder="assigned to">
+      <h5>Priority:</h5>
+      <div class="input-field">
+        <p>
+          <label>
+            <input name="priority" type="radio" value="high" #priority="ngModel" [(ngModel)]="taskService.selectedTask.priority" />
+            <span>High</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input name="priority" type="radio" value="low" #priority="ngModel" [(ngModel)]="taskService.selectedTask.priority"/>
+            <span>Low</span>
+          </label>
+        </p>
+      </div>
+      <h5>Date:</h5>
+      <label for="startDate">Start Date</label>
+      <input type="date" name="startDate" id="startDate" #startDate="ngModel" [(ngModel)]="taskService.selectedTask.startDate">
+
+      <label for="endDate">End Date</label>
+      <input type="date" name="endDate" id="startDate" #endDate="ngModel" [(ngModel)]="taskService.selectedTask.endDate">
+
+      <h5>Reminder:</h5>
+      <label for="reminder">End Date</label>
+      <input type="date" name="reminder" id="reminder" #reminder="ngModel" [(ngModel)]="taskService.selectedTask.reminder">
+
+
+      <div class="taskFormbtn">
+        <h5>
+          <button id="cancelbtn" class="btn" (click)="goToPage('/')">Cancel</button>
+          <button id="addtaskbtn" class="btn" type="submit"  [disabled]="!taskForm.valid">Edit Task</button>
+        </h5>
+      </div>
+  </form>
+  <div>
+  </div>

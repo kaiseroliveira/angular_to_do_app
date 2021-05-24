@@ -1,0 +1,55 @@
+
+<router-outlet ></router-outlet>
+<h6 (click)="toggleShowTaskList()"><a href="#">Show/Hide</a></h6>
+<div *ngIf="showTaskList">
+
+  <div *ngFor="let task of taskService.tasks" >
+      <div *ngIf="!checkStatus(task.status)">
+        <div *ngIf="checkID(task.ownerID)" class="task" [ngClass]="{reminder: true}" >
+          <h6>
+            <span (click)="toggleShowTask(task._id)">{{task.title}}</span>
+
+            <h6>
+              <fa-icon (click)="onDelete(task._id)" [ngStyle]="{'color': 'red'}" [icon]="faTimes"></fa-icon>
+              <fa-icon  *ngIf="task.ownerID == userID" class="editbtn"  (click)="goToPageEdit('edittask/',task._id)" [ngStyle]="{'color': 'black'}" [icon]="faEdit"></fa-icon>
+            </h6>
+          </h6>
+
+          <h6>{{task.description}}</h6>
+
+          <div *ngIf="!showTask; else showElse">
+            <div *ngIf="checkDeadline(task.endDate); else showReminder">
+              <h6>This task is overdue!</h6>
+              <h6>The deadline was on the: {{task.endDate.substring(0,10)}}</h6>
+            </div>
+            <ng-template #showReminder>
+              <div *ngIf="checkReminder(task.reminder)">
+                <h6>REMINDER!</h6>
+                <h6>Your task is due on the {{task.endDate.substring(0,10)}}</h6>
+              </div>
+            </ng-template>
+          </div>
+
+
+
+      <ng-template #showElse>
+        <div *ngIf="showTaskId == task._id">
+          <h6>Priority:</h6>
+          <p>{{task.priority}}</p>
+          <h6>Start Date:</h6>
+          <p>{{task.startDate.substring(0,10)}}</p>
+          <h6>End Date:</h6>
+          <p>{{task.endDate.substring(0,10)}}</p>
+          <br>
+          <button class="btn" (click)="setToComplete(task._id)">Completed</button>
+          <br>
+          <br>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+  </div>
+</div>
+<app-assigned-task></app-assigned-task>
+<app-completed-task></app-completed-task>

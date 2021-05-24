@@ -1,0 +1,21 @@
+<!-- form for new message, include title,send to, content parts and send button,
+  ngModel used for 2 way binding, ngSubmit event triggers when user clicks submit,
+  ngIf used for toggle of component-->
+<form *ngIf="showNewMessage" class="add-form" (ngSubmit)="onSubmit()">
+  <div class="form-control">
+    <label for="title">Title</label>
+    <input type="text" name="title" [(ngModel)]="title" id="title" placeholder="Add title" />
+  </div>
+
+  <div class="form-control">
+    <label for="to">Send to</label>
+    <input type="text" name="to" [(ngModel)]="to" id="to" placeholder="Add user ID to whom message is going" />
+  </div>
+
+  <div class="form-control">
+    <label for="content">Content</label>
+    <input type="text" name="content" [(ngModel)]="content" id="content" placeholder="Add message content" />
+  </div>
+
+  <input type="submit" value="Send" class="btn btn-block">
+</form>

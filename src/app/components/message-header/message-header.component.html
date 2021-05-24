@@ -1,0 +1,16 @@
+<header>
+  <!-- pulling title from ts for message header-->
+  <h3>{{title}}</h3>
+
+  <!--
+  pulling message button component,
+  setting color and text values,
+  setting button click event which will toggle new message component when triggered
+  -->
+  <app-message-button color="{{showNewMessage ? 'cadetblue' : 'cadetblue'}}"
+                      text="{{showNewMessage ? 'Hide' : 'New'}}"
+                      (buttonClick)="toggleNewMessage()">
+
+  </app-message-button>
+</header>
+
